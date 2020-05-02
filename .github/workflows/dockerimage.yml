@@ -13,8 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions-hub/docker/login@master
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker-compose build
-    - name: Push the Docker image
-      run: docker-compose push
+    - run: docker-compose build
+    - run: docker-compose push
