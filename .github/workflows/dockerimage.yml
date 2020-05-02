@@ -19,4 +19,4 @@ jobs:
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - uses: actions/checkout@v2
     - run: docker-compose build
-    - run: docker-compose push
+    - run: docker push mattipaksula/reflux:1.13.10-alpine3.11
