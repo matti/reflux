@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions-hub/docker/login@master
-      env:
-        DOCKER_USERNAME: mattipaksula
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     - uses: actions/checkout@v2
-    - run: |
-        docker-compose build
-        docker-compose push
+    - uses: docker/build-push-action@v1
+      with:
+        username: mattipaksula
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: mattipaksula/reflux
+        tag_with_ref: true
+        tag_with_sha: true
