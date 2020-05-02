@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: docker
 
 on:
   push:
@@ -19,5 +19,6 @@ jobs:
           repository: mattipaksula/reflux
           tag_with_ref: true
           tag_with_sha: true
+          cache_froms: mattipaksula/reflux:latest
         env:
           DOCKER_BUILDKIT: 1
