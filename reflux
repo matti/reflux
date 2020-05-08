@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -e
+
+if [ "$1" = "" ]; then
+  echo "usage:"
+  echo 'CMD [ "go run main.go" ]'
+  sleep 1
+  exit 1
+fi
+
+exec reflex -s $@
