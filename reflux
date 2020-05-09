@@ -8,5 +8,4 @@ if [ "$1" = "" ]; then
   exit 1
 fi
 
-go mod download
 exec reflex -s $@
