@@ -16,13 +16,4 @@ if [ "$1" = "" ]; then
   exit 1
 fi
 
-echo "go mod download started"
-
-trap "_term" TERM
-go mod download -x &
-wait $!
-
-echo ""
-echo "go mod download completed in ${SECONDS}s"
-
 exec reflex -s $@

@@ -11,12 +11,12 @@ FROM golang:1.14.2-alpine3.11
 RUN apk add --no-cache \
   bash
 
-ONBUILD VOLUME /root/.cache
-ONBUILD VOLUME /go/pkg
-ONBUILD WORKDIR /app
-ONBUILD COPY . .
-
 COPY --from=builder /go/bin/reflex /usr/bin
 COPY reflux /
+
+ONBUILD WORKDIR /app
+ONBUILD COPY go.* ./
+ONBUILD RUN go mod download -x
+ONBUILD COPY . .
 
 ENTRYPOINT [ "/reflux" ]
