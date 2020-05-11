@@ -1,5 +1,13 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 set -e
+
+_term() {
+  >&2 echo "TERM while go mod download"
+  trap '' TERM
+  kill -- $$
+  exit 0
+}
+
 
 if [ "$1" = "" ]; then
   echo "usage:"
@@ -8,7 +16,13 @@ if [ "$1" = "" ]; then
   exit 1
 fi
 
-echo "go mod download starting"
-go mod download
-echo "go mod download completed"
+echo "go mod download started"
+
+trap "_term" TERM
+go mod download -x &
+wait $!
+
+echo ""
+echo "go mod download completed in ${SECONDS}s"
+
 exec reflex -s $@

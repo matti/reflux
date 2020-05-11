@@ -3,9 +3,4 @@ version: "3.7"
 services:
   reflux:
     build: .
-    image: mattipaksula/reflux:1.14.2-alpine3.11
-
-  test:
-    build: test
-    volumes:
-      - ./test:/app
+    image: mattipaksula/reflux:1.14.2-alpine3.11-2020-05-11-1
